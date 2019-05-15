@@ -37,14 +37,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{% url 'news:index' %}">主页<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'wiki:index' %}">主页<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin">管理</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'news:edit_page' 0 %}">创建</a>
+                <a class="nav-link" href="{% url 'wiki:edit_page' 0 %}">创建</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,10 +58,10 @@
             </li>
             {%  if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'news:logout' %}">注销</a>
+                <a class="nav-link" href="{% url 'wiki:logout' %}">注销</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'news:user_page' user.username %}">空间</a>
+                <a class="nav-link" href="{% url 'wiki:user_page' user.username %}">空间</a>
             </li>
             {% else %}
             <li class="nav-item dropdown">
@@ -93,7 +93,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{% url 'news:auth' %}" method="post">
+                <form action="{% url 'wiki:auth' %}" method="post">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="username" class="col-form-label">username:</label>

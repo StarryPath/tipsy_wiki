@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-    'news',
+    'wiki',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +78,7 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.mysql'),
         'NAME': 'djangodb',
         'USER': 'root',
-        'PASSWORD': '13723926068',
+        'PASSWORD': 'root',
         'HOST':'localhost',
         'PORT': '3306',
     }
