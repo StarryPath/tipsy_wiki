@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from news.models import Column, Article, IMG
+from wiki.models import Column, Article, IMG
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -23,10 +23,10 @@ def index(request):
 def about(request):
     columns = Column.objects.all()
     context = {'columns': columns,}
-    return render(request, 'news/about.html', context)
+    return render(request, 'wiki/about.html', context)
 
 @csrf_exempt
-@login_required(login_url='news:index')
+@login_required(login_url='wiki:index')
 def upload(request):
     new_img=IMG(img = request.FILES['editormd-image-file'])
     new_img.save()
@@ -44,20 +44,20 @@ def auth(request):
     user=authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        return HttpResponseRedirect(reverse('news:user_page', args=[username]))
+        return HttpResponseRedirect(reverse('wiki:user_page', args=[username]))
     else:
         return HttpResponse(u"login failure")
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect(reverse('news:index'))
+    return HttpResponseRedirect(reverse('wiki:index'))
 
-@login_required(login_url='news:index')
+@login_required(login_url='wiki:index')
 def user_page(request, user_key):
     columns = Column.objects.all()
     user_key=User.objects.get(username=user_key)
     context = {'columns':columns, 'user_key':user_key}
-    return render(request, 'news/user.html', context)
+    return render(request, 'wiki/user.html', context)
 
 def column_detail(request, column_slug):
     columns = Column.objects.all()
@@ -73,7 +73,7 @@ def column_detail(request, column_slug):
     except EmptyPage:
         contacts = paginator.page(paginator.num_pages)
     context = {'column': column, 'columns': columns, 'contacts':contacts}
-    return render(request, 'news/column.html', context)
+    return render(request, 'wiki/column.html', context)
 
 
 def article_detail(request, column_slug, pk):
@@ -81,21 +81,21 @@ def article_detail(request, column_slug, pk):
     column= Column.objects.get(slug=column_slug)
     article = Article.objects.get(pk=pk)
     context = {'article': article, 'columns': columns, 'column': column}
-    return render(request, 'news/article.html', context)
+    return render(request, 'wiki/article.html', context)
 
-@login_required(login_url='news:index')
+@login_required(login_url='wiki:index')
 def edit_page(request, pk):
     columns = Column.objects.all()
     if str(pk) == '0':
         context={'columns': columns}
-        return render(request, 'news/edit_page.html', context)
+        return render(request, 'wiki/edit_page.html', context)
     article = Article.objects.get(pk=pk)
     if request.user.username != article.author.username:
         return HttpResponse(u'Sorry you cannot do that')
     context={'article': article, 'columns': columns}
-    return render(request, 'news/edit_page.html', context)
+    return render(request, 'wiki/edit_page.html', context)
 
-@login_required(login_url='news:index')
+@login_required(login_url='wiki:index')
 def edit_action(request):
     title = request.POST.get('title')
     content = request.POST.get('content')
