@@ -16,6 +16,7 @@
     .selector-for-some-widget {
     box-sizing: content-box;
     }
+    a{margin-right: 40px;}
     </style>
     {% block css %}{% endblock css %}
 
@@ -34,12 +35,16 @@
     </style>
 {% block js %}{% endblock js %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-
+<!-- Brand/logo -->
+  <a class="navbar-brand" href="#">
+    <img src="/static/logo.png" alt="logo" style="width:40px;">
+  </a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'wiki:index' %}">主页<span class="sr-only">(current)</span></a>
             </li>
