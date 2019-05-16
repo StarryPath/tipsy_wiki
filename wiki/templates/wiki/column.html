@@ -36,7 +36,7 @@
                                 <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
                             </div>
                             <div class="col">
-                                <a href="{% url 'news:user_page' article.author %}">{{ article.author }}</a>
+                                <a href="{% url 'wiki:user_page' article.author %}">{{ article.author }}</a>
                             </div>
                             <div class="col">
                                 {{ article.pub_date }}

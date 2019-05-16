@@ -33,7 +33,7 @@ update an article
             sequenceDiagram : true,  // 默认不解析
             imageUpload : true,
             imageFormats : ["jpg","jpeg","gif","png","bmp","webp"],
-            imageUploadURL : "{% url 'news:upload' %}",
+            imageUploadURL : "{% url 'wiki:upload' %}",
 
         });
     });
@@ -44,7 +44,7 @@ update an article
 
 
 
-<form action="{% url 'news:edit_action' %}" method="post">
+<form action="{% url 'wiki:edit_action' %}" method="post">
 
     {% csrf_token %}
 
