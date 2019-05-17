@@ -14,11 +14,13 @@ import json
 def index(request):
     columns = Column.objects.all()
     articles=Article.objects.all().order_by('-pub_date')[:5]
+    users=User.objects.all()
+    # user_key=User.objects.get(username=user_key)
     try:
         article=Article.objects.get(pk=10)
-        context = {'columns': columns, 'articles': articles,'article':article}
+        context = {'columns': columns, 'articles': articles,'article':article, 'users':users}
     except:
-        context = { 'columns': columns, 'articles':articles}
+        context = { 'columns': columns, 'articles':articles, 'users':users}
     return render(request, 'index.html', context)
 
 
