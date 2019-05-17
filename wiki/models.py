@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.conf import settings
+from django.contrib.auth.models import User
 
-class NewUser(AbstractUser):
+
+class UserExtension(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='extension')
     team = models.CharField('团队名称', max_length=256)
 
 
