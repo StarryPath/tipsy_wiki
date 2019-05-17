@@ -24,7 +24,6 @@ SECRET_KEY = '$9tbzp)l(1%^$(p7i#13^$@27%!vuu^_r0b1y)#-6mht94!3fh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -124,4 +123,4 @@ ALLOWED_HOSTS = ['*']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*',]
