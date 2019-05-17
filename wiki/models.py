@@ -1,7 +1,18 @@
 # -*- coding: utf-8 -*-
 from django.core.urlresolvers import reverse
 from django.db import models
+# from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 
+class NewUser(AbstractUser):
+    team = models.CharField('团队名称', max_length=256,null=True, blank=True)
+
+class Team(models.Model):
+    name = models.CharField('团队名称', max_length=256)
+    
+    def __str__(self):
+        return self.name
 
 class Column(models.Model):
     name = models.CharField('栏目名称', max_length=256)
@@ -23,7 +34,7 @@ class Column(models.Model):
 
 class Article(models.Model):
     column = models.ForeignKey(Column, default='', null=False, verbose_name='归属栏目')
-    author = models.ForeignKey('auth.User', blank=True, null=True, verbose_name='作者')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, verbose_name='作者')
 
     title = models.CharField('标题', max_length=256)
     content = models.TextField()
