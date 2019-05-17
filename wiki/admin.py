@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Column, Article, IMG, Team,NewUser
+from .models import Column, Article, IMG, Team, NewUser
 from django.contrib.auth.admin import UserAdmin
 # from django.contrib.auth.models import User
 
@@ -17,11 +17,23 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'column', 'author', 'pub_date', 'update_time')
     list_filter = ('column', 'author', 'pub_date')
 
+class UserAdmin(UserAdmin):
+    #重写fieldsets在admin后台加入自己新增的字段
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        (('Personal info'), {'fields': ('first_name', 'last_name', 'email')}),
+        (('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
+                                       'groups', 'user_permissions')}),
+        (('Important dates'), {'fields': ('last_login', 'date_joined')}),
+        (('Teams'), {'fields': ('team',)}),
+    )
 
-class NewUserAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(NewUser, NewUserAdmin)
 
+admin.site.register(NewUser, UserAdmin)
+# class NewUserAdmin(admin.ModelAdmin):
+#     pass
+# admin.site.register(NewUser, NewUserAdmin)
+# admin.site.register(NewUser)
 
 # admin.site.unregister(User)
 # admin.site.register(NewUser, UserAdmin)
