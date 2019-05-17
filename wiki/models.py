@@ -1,7 +1,17 @@
 # -*- coding: utf-8 -*-
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
+class NewUser(AbstractUser):
+    team = models.CharField('团队名称', max_length=256)
+
+
+class Team(models.Model):
+    name = models.CharField('团队名称', max_length=256)
+    
+    def __str__(self):
+        return self.name
 
 class Column(models.Model):
     name = models.CharField('栏目名称', max_length=256)
