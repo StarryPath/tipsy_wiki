@@ -34,8 +34,24 @@ def upload(request):
     s=json.dumps({'success':1,'message':"aa",'url':url})
     return HttpResponse(s)
 
+def register(request):
+    password1 = request.POST['password1']
+    password2 = request.POST['password2']
+    email = request.POST['email']
+    username = request.POST['username']
+    if password2=="" or username=="" or email=="":
+        return HttpResponse(u"Input can not be empty!")
+    else:
+        if password2==password1:
+            try:
+                User.objects.get(username=username)
+                return HttpResponse(u"Username already exists")
+            except:
+                User.objects.create_user(username, email, password1)
+                return HttpResponse(u"success")
 
-
+        else:
+            return HttpResponse(u"Entered passwords differ!")
 
 
 def auth(request):

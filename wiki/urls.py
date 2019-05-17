@@ -6,6 +6,7 @@ from wiki import views as wiki_views
 urlpatterns = [
     url(r'^$', wiki_views.index, name='index'),
     url(r'about/$', wiki_views.about, name='about'),
+    url(r'^register/$',wiki_views.register,name='register'),
     url(r'^auth/$', wiki_views.auth, name='auth'),
     url(r'^logout/$', wiki_views.logout_view, name='logout'),
     url(r'^upload/$', wiki_views.upload, name='upload'),
