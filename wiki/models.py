@@ -5,8 +5,9 @@ from django.contrib.auth.models import User
 
 
 class UserExtension(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='extension')
-    team = models.CharField('团队名称', max_length=256)
+    # user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='extension')
+    user = models.OneToOneField(User)
+    team = models.CharField('团队名称', max_length=256,null=True, blank=True)
 
 
 class Team(models.Model):
