@@ -14,4 +14,4 @@ columnlist=['CTF','WEB','PWN','REVERSE','WIKI']
 
 
 for c_name in columnlist:
-    Column = Column.objects.get_or_create(name=c_name, slug=c_name )
+    Column = Column.objects.create(name=c_name, slug=c_name )
