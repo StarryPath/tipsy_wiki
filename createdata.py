@@ -1,6 +1,9 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
 from wiki.models import Column
 from wiki.models import Team
+ 
+User = get_user_model()
 #添加用户
 namelist = ['lintianxiang', 'jiaozhengang', 'liyanzhe', 'zhangdachuan',
             'fuyao', 'jinzhen', 'lihuaxin', 'lisirui', 'linjinxiu', 'huangxin',
