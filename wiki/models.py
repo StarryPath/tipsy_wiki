@@ -35,7 +35,7 @@ class Column(models.Model):
 
 class Article(models.Model):
     column = models.ForeignKey(Column, default='', null=False, verbose_name='归属栏目')
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, verbose_name='作者')
+    author = models.ForeignKey('auth.User', blank=True, null=True, verbose_name='作者')
 
     title = models.CharField('标题', max_length=256)
     content = models.TextField()
