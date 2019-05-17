@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Column, Article, IMG, NewUser
-from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 
 class ColumnAdmin(admin.ModelAdmin):
@@ -15,12 +15,12 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 
-class ProfileInline(admin.StackInline):
+class ProfileInline(admin.StackedInline):
     model = NewUser
     can_delete = False
-    # verbose_name_plural = "profile"
+    verbose_name_plural = "profile"
 
-class UserAdmin(UserAdmin):
+class UserAdmin(BaseUserAdmin):
     inlines = (ProfileInline,)
 
 admin.site.unregister(User)
