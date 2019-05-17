@@ -48,7 +48,7 @@ def register(request):
                 return HttpResponse(u"Username already exists")
             except:
                 User.objects.create_user(username, email, password1)
-                return HttpResponse(u"success")
+                return HttpResponseRedirect(reverse('wiki:index'))
 
         else:
             return HttpResponse(u"Entered passwords differ!")
