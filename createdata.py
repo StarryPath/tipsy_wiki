@@ -6,12 +6,12 @@ namelist = ['lintianxiang', 'jiaozhengang', 'liyanzhe', 'zhangdachuan',
             'wangxiaowei', 'wangyang', 'yangjiageng', 'zhanghanwen', 'zhangzundong',
             'leipengqun', 'liujiahao', 'wangxuwu']
 
-for name in namelist:
-    user = User.objects.create_user(name, '123@123.com', name)
+#for name in namelist:
+#    user = User.objects.create_user(name, '123@123.com', name)
 
 
 columnlist=['CTF','WEB','PWN','REVERSE','WIKI']
 
 
 for c_name in columnlist:
-    Column = Column.objects.create(name=c_name, slug=c_name )
+    Column = Column.objects.get_or_create(name=c_name, slug=c_name )
