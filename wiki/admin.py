@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from .models import Column, Article, IMG, UserExtension
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.admin import UserAdmin
 
 
 class ColumnAdmin(admin.ModelAdmin):
@@ -14,13 +14,13 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'column', 'author', 'pub_date', 'update_time')
     list_filter = ('column', 'author', 'pub_date')
 
-class EmployeeInline(admin.StackedInline):
+class ProfileInline(admin.StackInlin):
     model = UserExtension
-    verbose_name_plural = u'管理中心'
+    can_delete = False
+    verbose_name_plural = "extension"
 
-# Define a new User admin
-class UserAdmin(BaseUserAdmin):
-    inlines = (EmployeeInline, )
+class UserAdmin(UserAdmin):
+    inlines = (ProfileInline,)
 
 
 admin.site.unregister(User)

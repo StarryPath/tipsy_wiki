@@ -5,10 +5,13 @@ from django.contrib.auth.models import User
 
 
 class UserExtension(models.Model):
-    # user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='extension')
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='extension')
+    # user = models.OneToOneField(User)
     team = models.CharField('团队名称', max_length=256,null=True, blank=True)
-
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_profile(sender, instance=None, created=False, **kwargs):
+    if created:
+        profile, created = UserExtension.objects.get_or_create(user=instance)
 
 class Team(models.Model):
     name = models.CharField('团队名称', max_length=256)
