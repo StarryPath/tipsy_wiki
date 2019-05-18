@@ -2,40 +2,41 @@
 from django.contrib.auth import get_user_model
 from wiki.models import Column
 from wiki.models import Team
+User = get_user_model()
+
 # 添加团队
 teamlist = ['攻防技术组', '安全开发组', '数据挖掘组']
-for team in teamlist:
-    Team.objects.create(name=team)
+for teamname in teamlist:
+    team = Team.objects.create(name=teamname)
 
-i = 2
-User = get_user_model()
+
+team = Team.objects.get(pk=1)
 User.objects.create_superuser(
-    username='admin', email='QQ@qq.com', password='admin')
-User.objects.filter(id=1).update(team=1)
+    username='admin', email='QQ@qq.com', password='admin', team=team)
 # 添加用户
 namelist1 = ['lintianxiang', 'liujiahaos', 'liyanzhe', 'zhangdachuan',
              'fuyao', 'jinzhen', 'zhangruiqi']
 
+team = Team.objects.get(pk=1)
 for name in namelist1:
-    User.objects.create_user(name, '123@123.com', name)
-    User.objects.filter(id=i).update(team=1)
-    i = i+1
+    User.objects.create_user(
+        username=name, email='123@123.com', password=name, team=team)
+
 
 namelist2 = ['lihuaxin', 'lisirui', 'linjinxiu', 'huangxin',
              'wangxiaowei', 'wangyang']
-
+team = Team.objects.get(pk=2)
 for name in namelist2:
-    User.objects.create_user(name, '123@123.com', name)
-    User.objects.filter(id=i).update(team=2)
-    i = i+1
+    User.objects.create_user(
+        username=name, email='123@123.com', password=name, team=team)
+
 
 namelist3 = ['yangjiageng', 'zhanghanwen', 'zhangzundong',
              'leipengqun', 'jiaozhengang', 'wangxuwu']
-
+team = Team.objects.get(pk=3)
 for name in namelist3:
-    User.objects.create_user(name, '123@123.com', name)
-    User.objects.filter(id=i).update(team=3)
-    i = i+1
+    User.objects.create_user(
+        username=name, email='123@123.com', password=name, team=team)
 
 
 # 添加栏目
