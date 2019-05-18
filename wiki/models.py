@@ -5,24 +5,28 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 
-# 自定义的用户类
-
-
-class NewUser(AbstractUser):
-    team = models.CharField('团队名称', max_length=256, null=True, blank=True)
-
 # 团队
 
 
 class Team(models.Model):
     name = models.CharField('团队名称', max_length=256)
     intro = models.TextField('团队简介', default='')
+
     def __str__(self):
         return self.name
+
     class Meta:
         verbose_name = '团队'
         verbose_name_plural = '团队'
-        ordering = ['name'] 
+        ordering = ['name']
+
+# 自定义的用户类
+
+
+class NewUser(AbstractUser):
+    team = models.ForeignKey(
+        Team, default='', null=False, verbose_name='所属团队')
+    # team = models.CharField('团队名称', max_length=256, null=True, blank=True)
 # 栏目
 
 

@@ -14,7 +14,7 @@ class IMGAdmin(admin.ModelAdmin):
 
 
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', 'intro')
 
 
 class ArticleAdmin(admin.ModelAdmin):
