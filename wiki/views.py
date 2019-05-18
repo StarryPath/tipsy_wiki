@@ -122,9 +122,9 @@ def article_detail(request, column_slug, pk):
     columns = Column.objects.all()
     column = Column.objects.get(slug=column_slug)
     article = Article.objects.get(pk=pk)
-    comment = Comment.objects.get(article=article)
+    comments = Comment.objects.filter(article=article.pk)
     context = {'article': article, 'columns': columns,
-               'column': column, 'comment': comment}
+               'column': column, 'comments': comments}
     return render(request, 'wiki/article.html', context)
 
 # 评论

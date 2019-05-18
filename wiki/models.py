@@ -16,10 +16,13 @@ class NewUser(AbstractUser):
 
 class Team(models.Model):
     name = models.CharField('团队名称', max_length=256)
-
+    intro = models.TextField('团队简介', default='')
     def __str__(self):
         return self.name
-
+    class Meta:
+        verbose_name = '团队'
+        verbose_name_plural = '团队'
+        ordering = ['name'] 
 # 栏目
 
 
