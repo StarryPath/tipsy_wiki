@@ -2,15 +2,32 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 from wiki.models import Column
 from wiki.models import Team
- 
+i=2
+User.objects.create_superuser(username='admin',email='QQ@qq.com',password='admin')
 #添加用户
-namelist = ['lintianxiang', 'jiaozhengang', 'liyanzhe', 'zhangdachuan',
-            'fuyao', 'jinzhen', 'lihuaxin', 'lisirui', 'linjinxiu', 'huangxin',
-            'wangxiaowei', 'wangyang', 'yangjiageng', 'zhanghanwen', 'zhangzundong',
-            'leipengqun', 'liujiahao', 'wangxuwu']
+namelist1 = ['lintianxiang', 'liujiahaos', 'liyanzhe', 'zhangdachuan',
+            'fuyao', 'jinzhen','zhangruiqi']
 
-for name in namelist:
-   user = User.objects.create_user(name, '123@123.com', name)
+for name in namelist1:
+   User.objects.create_user(name, '123@123.com', name)
+   User.objects.filter(id=i).update(team='攻防技术组')
+   i=i+1
+
+namelist2 = ['lihuaxin', 'lisirui', 'linjinxiu', 'huangxin',
+            'wangxiaowei', 'wangyang']
+
+for name in namelist2:
+    User.objects.create_user(name, '123@123.com', name)
+    User.objects.filter(id=i).update(team='安全开发组')
+    i=i+1
+
+namelist3 = ['yangjiageng', 'zhanghanwen', 'zhangzundong',
+            'leipengqun', 'jiaozhengang', 'wangxuwu']
+
+for name in namelist3:
+    User.objects.create_user(name, '123@123.com', name)
+    User.objects.filter(id=i).update(team='数据挖掘组')
+    i=i+1
 
 #添加栏目
 columnlist=['CTF','WEB','PWN','REVERSE','WIKI']

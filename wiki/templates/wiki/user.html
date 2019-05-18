@@ -3,7 +3,11 @@
 {% block title %}
 用户主页
 {% endblock title %}
+{% block js %}
 
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+
+{% endblock js %}
 {% block content %}
 
 
@@ -13,6 +17,7 @@
         <div class="list-group" id="list-tab" role="tablist">
             <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">会员信息</a>
             <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">所写文章</a>
+            <a class="list-group-item list-group-item-action" id="list-group-list" data-toggle="list" href="#list-group" role="tab" aria-controls="group">团队信息</a>
         </div>
     </div>
 
@@ -75,10 +80,99 @@
                 </div>
 
             </div>
+            <div class="tab-pane fade" id="list-group" role="tabpanel" aria-labelledby="list-messages-list">
+                <div class="container-fluid">
+                    {% for person in group %}
+                        {{person}}
+                    {% endfor %}
+                </div>
+            <div id="container" style="width: 600px;height:600px;"></div>
+            </div>
+
+            </div>
+            <script type="text/javascript">
+            var dom = document.getElementById("container");
+            var myChart = echarts.init(dom);
+            var app = {};
+            option = null;
+            var myArray = {{ group|safe }};
+            function createNodes(count) {
+                var nodes = [];
+                for (var i = 0; i < count; i++) {
+                    nodes.push({
+                        id: i,
+                        name:myArray[i],
+                    });
+                }
+                return nodes;
+            }
+
+            function createEdges(count) {
+                var edges = [];
+                if (count === 2) {
+                    return [[0, 1]];
+                }
+                for (var i = 0; i < count; i++) {
+                    edges.push([0, (i + 1) % count]);
+                }
+                return edges;
+            }
+
+            var datas = [];
+
+                datas.push({
+                    nodes: createNodes({{num}}),
+                    edges: createEdges({{num}})
+                });
+
+
+            option = {
+                series: datas.map(function (item, idx) {
+                    return {
+                        type: 'graph',
+                        layout: 'force',
+                        label: {
+                normal: {
+                    show: true
+                }
+            },
+            itemStyle: {
+        normal: {
+            color: "#2ec7c9",
+            lineStyle: {
+                color: "#2ec7c9"
+            }
+        }
+    },
+                        symbolSize: 50,
+                        data: item.nodes,
+                        left: (idx % 4) * 25 + '%',
+                        top: Math.floor(idx / 4) * 25 + '%',
+                        width: '100%',
+                        height: '100%',
+                        force: {
+                             initLayout: 'circular',
+                             gravity: 0,
+                            repulsion: 560,
+                            edgeLength: 200
+                        },
+                        edges: item.edges.map(function (e) {
+                            return {
+                                source: e[0],
+                                target: e[1]
+                            };
+                        })
+                    };
+                })
+            };
+            ;
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+       </script>
         </div>
     </div>
 </div>
-
 
 
 

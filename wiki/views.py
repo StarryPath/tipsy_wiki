@@ -76,7 +76,13 @@ def logout_view(request):
 def user_page(request, user_key):
     columns = Column.objects.all()
     user_key=User.objects.get(username=user_key)
-    context = {'columns':columns, 'user_key':user_key}
+    group=User.objects.filter(team=user_key.team)
+    list=[]
+    list.append(str(user_key.team))
+    for person in group:
+        list.append(str(person))
+    num=len(group)
+    context = {'columns':columns, 'user_key':user_key,'group':json.dumps(list),'num':num}
     return render(request, 'wiki/user.html', context)
 
 def column_detail(request, column_slug):
