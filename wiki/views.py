@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
-from wiki.models import Column, Article, IMG
+from wiki.models import Column, Article, IMG, Comment
 # from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -122,8 +122,22 @@ def article_detail(request, column_slug, pk):
     columns = Column.objects.all()
     column = Column.objects.get(slug=column_slug)
     article = Article.objects.get(pk=pk)
-    context = {'article': article, 'columns': columns, 'column': column}
+    comment = Comment.objects.get(article=article)
+    context = {'article': article, 'columns': columns,
+               'column': column, 'comment': comment}
     return render(request, 'wiki/article.html', context)
+
+# 评论
+
+
+# @login_required(login_url='wiki:index')
+# def article_comment(request, pk):
+#     article = Article.objects.get(pk=pk)
+#     art_author = User.objects.get(username=request.POST.get('art_author'))
+#     art_content = request.POST.get('art_content')
+#     comment = Comment.objects.create(
+#         article=article, author=art_author, content=art_content)
+#     return HttpResponseRedirect(article.get_absolute_url())
 
 
 # 编辑页面
