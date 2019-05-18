@@ -23,7 +23,7 @@ SECRET_KEY = '$9tbzp)l(1%^$(p7i#13^$@27%!vuu^_r0b1y)#-6mht94!3fh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['*',]
+ALLOWED_HOSTS = ['*', ]
 
 # Application definition
 
@@ -78,7 +78,7 @@ DATABASES = {
         'NAME': 'djangodb',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST':'localhost',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
