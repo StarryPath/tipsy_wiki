@@ -25,7 +25,7 @@ class Team(models.Model):
 
 class NewUser(AbstractUser):
     team = models.ForeignKey(
-        Team, default='', null=False, verbose_name='所属团队')
+        Team, default='', null=True, verbose_name='所属团队')
     # team = models.CharField('团队名称', max_length=256, null=True, blank=True)
 # 栏目
 
