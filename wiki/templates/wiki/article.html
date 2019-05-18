@@ -77,11 +77,25 @@
     <div id="editormd_view">
         <textarea style="display:none;" name="content"> {{ article.content }}</textarea>
     </div>
-
+<!--
 
 {% for comment in comments %}
 评论内容  :{{ comment.content }}-{{ comment.author }}-{{ comment.pub_date }}
 {% endfor %}
+-->
+<div class="list-group text-left">
+    {% for comment in comments %}
+    <ul>
+        <li class="list-group-item">
+            <span class="text-primary">{{ comment.author }}&nbsp;:</span>
+            <span>&nbsp;&nbsp;{{ comment.content }}</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="text-info pull-right">({{ comment.pub_date }})</span>
+        </li>
+    </ul>
+    {% endfor %}
+
+</div>
 
 
 {% endblock content %}
