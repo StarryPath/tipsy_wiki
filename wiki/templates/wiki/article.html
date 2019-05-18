@@ -78,4 +78,12 @@
         <textarea style="display:none;" name="content"> {{ article.content }}</textarea>
     </div>
 
+
+{% for comment in comments %}
+评论内容  :{{ comment.content }}-{{ comment.author }}-{{ comment.pub_date }}
+{% endfor %}
+
+
 {% endblock content %}
+
+
