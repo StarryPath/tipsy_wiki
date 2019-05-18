@@ -6,10 +6,14 @@ from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 
 # 自定义的用户类
+
+
 class NewUser(AbstractUser):
     team = models.CharField('团队名称', max_length=256, null=True, blank=True)
 
 # 团队
+
+
 class Team(models.Model):
     name = models.CharField('团队名称', max_length=256)
 
@@ -17,6 +21,8 @@ class Team(models.Model):
         return self.name
 
 # 栏目
+
+
 class Column(models.Model):
     name = models.CharField('栏目名称', max_length=256)
     slug = models.CharField('栏目网址', max_length=256, db_index=True)
@@ -35,6 +41,8 @@ class Column(models.Model):
         ordering = ['name']  # 按照哪个顺序排序
 
 # 文章
+
+
 class Article(models.Model):
     column = models.ForeignKey(
         Column, default='', null=False, verbose_name='归属栏目')
@@ -58,20 +66,24 @@ class Article(models.Model):
         verbose_name = '文章'
         verbose_name_plural = '文章'
 
-# # 评论
-# class Comment(models.Model):
-#     article = models.ForeignKey(
-#         Article, default='', null=False, verbose_name='文章')
-#     author = models.ForeignKey(
-#         settings.AUTH_USER_MODEL, blank=True, null=True, verbose_name='作者')
-#     content = models.TextField()
-#     pub_date = models.DateTimeField('发表时间', auto_now_add=True, editable=True)
+# 评论
 
-#     class Meta:
-#         verbose_name = '评论'
-#         verbose_name_plural = '评论'
+
+class Comment(models.Model):
+    article = models.ForeignKey(
+        Article, default='', null=False, verbose_name='文章')
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL, blank=True, null=True, verbose_name='作者')
+    content = models.TextField()
+    pub_date = models.DateTimeField('发表时间', auto_now_add=True, editable=True)
+
+    class Meta:
+        verbose_name = '评论'
+        verbose_name_plural = '评论'
 
 # 图片
+
+
 class IMG(models.Model):
     name = models.CharField(max_length=255)
     img = models.ImageField(upload_to='upload')
