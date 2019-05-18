@@ -6,6 +6,7 @@ from wiki.models import Team
 i=2
 User = get_user_model()
 User.objects.create_superuser(username='admin',email='QQ@qq.com',password='admin')
+User.objects.filter(id=1).update(team='攻防技术组')
 #添加用户
 namelist1 = ['lintianxiang', 'liujiahaos', 'liyanzhe', 'zhangdachuan',
             'fuyao', 'jinzhen','zhangruiqi']
