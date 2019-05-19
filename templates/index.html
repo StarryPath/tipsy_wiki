@@ -74,18 +74,40 @@
 			</div>
 		</div>
 		<div class="col-md-3 column ">
-			<div class="list-group   text-left">
-				{% for comment in comments %}
-				<ul>
+			<div class="list-group   text-left"><ul>
+				<li class="list-group-item">
+					<h5><strong>最新文章</strong></h5>
+				</li>
+				{% for article in articles %}
+
+
 					<li class="list-group-item">
-						<span class="text-primary">{{ comment.author }}&nbsp;:</span>
-						<span>&nbsp;&nbsp;{{ comment.content }}</span>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<span class="text-info pull-right">({{ comment.pub_date }})</span>
+						<span class="text-primary">{{ article.author}}&nbsp;</span>
+						<span>&nbsp;&nbsp;创建了&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ article.get_absolute_url }}">{{article.title}}</a></span>
+
 					</li>
-				</ul>
-				{% endfor %}
+
+				{% endfor %}</ul>
 			</div>
+			<br><br><br><br><br><br><br><br>
+			<div class="list-group   text-left"><ul>
+				<li class="list-group-item">
+					<h5><strong>近期评论</strong></h5>
+				</li>
+				{% for comment in comments %}
+
+
+					<li class="list-group-item">
+						<span class="text-primary">{{ comment.author.username }}&nbsp;</span>
+						<span>&nbsp;&nbsp;发表在&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ comment.article.get_absolute_url }}">{{ comment.article.title }}</a></span>
+
+					</li>
+
+				{% endfor %}</ul>
+			</div>
+
+
+
 		</div>
 		</div>
 	</div>
