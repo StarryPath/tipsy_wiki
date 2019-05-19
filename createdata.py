@@ -59,9 +59,9 @@ article = Article.objects.create(
     title='title2', content='content2', column=column, author=author)
 
 # 添加评论
-# article = Article.objects.get(pk=1)
-# author = User.objects.get(username='wangyang')
-# Comment.objects.create(article=article author = author content='认真评论,遵纪守法')
-# Comment.objects.create(article=article author=author content='认真评论,遵纪守法')
-# Comment.objects.create(article=article author=author content='认真评论,遵纪守法')
-# Comment.objects.create(article=article author=author content='认真评论,遵纪守法')
+article = Article.objects.get(pk=1)
+author = User.objects.get(username='wangyang')
+Comment.objects.create(article=article, author=author, content='认真评论,遵纪守法')
+Comment.objects.create(article=article, author=author, content='认真评论,遵纪守法')
+Comment.objects.create(article=article, author=author, content='认真评论,遵纪守法')
+Comment.objects.create(article=article, author=author, content='认真评论,遵纪守法')

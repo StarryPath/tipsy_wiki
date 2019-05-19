@@ -77,12 +77,27 @@
     <div id="editormd_view">
         <textarea style="display:none;" name="content"> {{ article.content }}</textarea>
     </div>
-<!--
 
-{% for comment in comments %}
-评论内容  :{{ comment.content }}-{{ comment.author }}-{{ comment.pub_date }}
-{% endfor %}
--->
+
+<!-- 评论功能 -->
+
+    <form action="{% url 'wiki:article_comment' %}" method="post">
+
+        {% csrf_token %}
+    
+        <input type="hidden" name="pk" value="{{ article.pk | default:'0' }}" />
+        <!-- <input type="hidden" name="comt_article" value="{{ article }}" /> -->
+        <input type="hidden"  name="comt_author" value="{{ user }}"/>
+
+        <div class="form-group">
+            <label for="Textarea1">评论</label>
+            <textarea class="form-control" name="comt_content" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-outline-primary">提交</button>
+    </form>
+
+ <!-- 评论展示    -->
 <div class="list-group text-left">
     {% for comment in comments %}
     <ul>

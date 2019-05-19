@@ -140,14 +140,16 @@ def article_detail(request, column_slug, pk):
 # 评论
 
 
-# @login_required(login_url='wiki:index')
-# def article_comment(request, pk):
-#     article = Article.objects.get(pk=pk)
-#     art_author = User.objects.get(username=request.POST.get('art_author'))
-#     art_content = request.POST.get('art_content')
-#     comment = Comment.objects.create(
-#         article=article, author=art_author, content=art_content)
-#     return HttpResponseRedirect(article.get_absolute_url())
+@login_required(login_url='wiki:index')
+def article_comment(request):
+    pk = request.POST.get('pk')
+    comt_article = Article.objects.get(pk=pk)
+    # comt_article=request.POST.get('comt_article')
+    comt_author = User.objects.get(username=request.POST.get('comt_author'))
+    comt_content = request.POST.get('comt_content')
+    comment = Comment.objects.create(
+        article=comt_article, author=comt_author, content=comt_content)
+    return HttpResponseRedirect(comt_article.get_absolute_url())
 
 
 # 编辑页面

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from .models import Column, Article, IMG, Team, NewUser
+from .models import Column, Article, IMG, Team, NewUser, Comment
 from django.contrib.auth.admin import UserAdmin
 # from django.contrib.auth.models import User
 
@@ -15,6 +15,10 @@ class IMGAdmin(admin.ModelAdmin):
 
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('name', 'intro')
+
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('content', 'author', 'article')
 
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -36,6 +40,7 @@ class UserAdmin(UserAdmin):
 
 admin.site.register(NewUser, UserAdmin)
 admin.site.register(Column, ColumnAdmin)
+admin.site.register(Comment, CommentAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Team, TeamAdmin)
 admin.site.register(IMG, IMGAdmin)
