@@ -7,17 +7,17 @@
 <div class="container-fluid">
 	<div class="row clearfix">
 		<div class="col-md-1 column"></div>
-		<div class="col-md-8 column">
-			<div id="demo" class="carousel slide" data-ride="carousel">
+		<div class="col-md-11 column">
+			<div class="row clearfix">
+			<div class="col-md-9 column">
 
-			<!-- 指示符 -->
+			<!-- 轮播图片 -->
+			<div id="demo" class="carousel slide" data-ride="carousel">
 			  <ul class="carousel-indicators">
 				<li data-target="#demo" data-slide-to="0" class="active"></li>
 				<li data-target="#demo" data-slide-to="1"></li>
 				<li data-target="#demo" data-slide-to="2"></li>
 			  </ul>
-
-			  <!-- 轮播图片 -->
 			  <div class="carousel-inner">
 				<div class="carousel-item active">
 				  <img src="https://static.runoob.com/images/mix/img_fjords_wide.jpg">
@@ -29,24 +29,25 @@
 				  <img src="https://static.runoob.com/images/mix/img_mountains_wide.jpg">
 				</div>
 			  </div>
-
-			  <!-- 左右切换按钮 -->
 			  <a class="carousel-control-prev" href="#demo" data-slide="prev">
 				<span class="carousel-control-prev-icon"></span>
 			  </a>
 			  <a class="carousel-control-next" href="#demo" data-slide="next">
 				<span class="carousel-control-next-icon"></span>
 			  </a>
-
 			</div>
+		</div>
+		<!--天气预报-->
+		<div class="col-md-3 column ">
+			<iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=55" style="border:solid 1px #7ec8ea" width="100%" height="294" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
+		</div>
+		</div>
 			<br>
+		<div class="row clearfix">
+		<div class="col-md-9 column">
 			<div class="jumbotron">
 				<h1>
 					Hello, world!
-					<!--
-					{% for user in users %}
-					{{ user.username }}-{{ user.team }}
-					{% endfor %} -->
 				</h1>
 				<p>
 					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
@@ -55,7 +56,6 @@
 					 <a class="btn btn-primary btn-large" href="#">Learn more</a>
 				</p>
 			</div>
-
 			<div class="row clearfix">
 				{% for team in teams %}
 				<div class="col-md-4 column">
@@ -70,10 +70,8 @@
 				{% endfor %}
 
 			</div>
-	</div>
-		<!--天气预报-->
-		<div class="col-md-3 column ml-auto">
-			<iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=55" style="border:solid 1px #7ec8ea" width="100%" height="294" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
+		</div>
+		<div class="col-md-3 column ">
 			<div class="list-group   text-left">
 				{% for comment in comments %}
 				<ul>
@@ -85,9 +83,10 @@
 					</li>
 				</ul>
 				{% endfor %}
-
 			</div>
 		</div>
+		</div>
+	</div>
 </div>
 </div>
 {% endblock content %}
