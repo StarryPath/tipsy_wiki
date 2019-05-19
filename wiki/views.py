@@ -17,10 +17,14 @@ User = get_user_model()
 
 def index(request):
     columns = Column.objects.all()
+    # 获取最新的五篇文章
     articles = Article.objects.all().order_by('-pub_date')[:5]
+
+    # 获取最近的三条评论
+    comments = Comment.objects.all().order_by('-pub_date')[:3]
     users = User.objects.all()
     teams = Team.objects.all()
-    comments = Comment.objects.all()
+    
     # user_key=User.objects.get(username=user_key)
     try:
         article = Article.objects.get(pk=10)
