@@ -47,7 +47,9 @@
 		<div class="col-md-9 column">
 			<div class="jumbotron">
 				<h1>
-					Hello, world!
+					{% for comment in comments %}
+					{{ comment.author.username }}发表在<a href="{{ comment.article.get_absolute_url }}">{{ comment.article.title }}</a>
+					{% endfor %}
 				</h1>
 				<p>
 					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
