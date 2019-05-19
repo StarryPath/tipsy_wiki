@@ -4,9 +4,10 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container-fluid">
 	<div class="row clearfix">
-		<div class="col-md-11 column">
+		<div class="col-md-1 column"></div>
+		<div class="col-md-8 column">
 			<div id="demo" class="carousel slide" data-ride="carousel">
 
 			<!-- 指示符 -->
@@ -38,79 +39,7 @@
 			  </a>
 
 			</div>
-		</div>
-		<div class="col-md-1 column ml-auto">
-			<iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=55" style="border:solid 1px #7ec8ea" width="255" height="294" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
-		</div>
-		<div class="col-md-12 column">
-			<nav class="navbar navbar-default" role="navigation">
-
-
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="active">
-							 <a href="#">Link</a>
-						</li>
-						<li>
-							 <a href="#">Link</a>
-						</li>
-						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									 <a href="#">Action</a>
-								</li>
-								<li>
-									 <a href="#">Another action</a>
-								</li>
-								<li>
-									 <a href="#">Something else here</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									 <a href="#">Separated link</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									 <a href="#">One more separated link</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" />
-						</div> <button type="submit" class="btn btn-default">Submit</button>
-					</form>
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							 <a href="#">Link</a>
-						</li>
-						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									 <a href="#">Action</a>
-								</li>
-								<li>
-									 <a href="#">Another action</a>
-								</li>
-								<li>
-									 <a href="#">Something else here</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									 <a href="#">Separated link</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-
-			</nav>
+			<br>
 			<div class="jumbotron">
 				<h1>
 					Hello, world!
@@ -126,42 +55,39 @@
 					 <a class="btn btn-primary btn-large" href="#">Learn more</a>
 				</p>
 			</div>
-		</div>
+
+			<div class="row clearfix">
+				{% for team in teams %}
+				<div class="col-md-4 column">
+					<h2>
+						{{ team.name }}
+					</h2>
+						<HR>
+					<p>
+						{{ team.intro }}
+					</p>
+				</div>
+				{% endfor %}
+
+			</div>
 	</div>
-	<div class="row clearfix">
-		<div class="col-md-4 column">
-			<h2>
-				Heading
-			</h2>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			<p>
-				 <a class="btn" href="#">View details »</a>
-			</p>
+		<!--天气预报-->
+		<div class="col-md-3 column ml-auto">
+			<iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=55" style="border:solid 1px #7ec8ea" width="100%" height="294" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
+			<div class="list-group   text-left">
+				{% for comment in comments %}
+				<ul>
+					<li class="list-group-item">
+						<span class="text-primary">{{ comment.author }}&nbsp;:</span>
+						<span>&nbsp;&nbsp;{{ comment.content }}</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<span class="text-info pull-right">({{ comment.pub_date }})</span>
+					</li>
+				</ul>
+				{% endfor %}
+
+			</div>
 		</div>
-		<div class="col-md-4 column">
-			<h2>
-				Heading
-			</h2>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			<p>
-				 <a class="btn" href="#">View details »</a>
-			</p>
-		</div>
-		<div class="col-md-4 column">
-			<h2>
-				Heading
-			</h2>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			<p>
-				 <a class="btn" href="#">View details »</a>
-			</p>
-		</div>
-	</div>
+</div>
 </div>
 {% endblock content %}

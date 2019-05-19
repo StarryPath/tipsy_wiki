@@ -3,7 +3,6 @@ from django.contrib import admin, auth
 from wiki import views as wiki_views
 from django.conf.urls.static import static
 from django.conf import settings
-
 urlpatterns = [
     url(r'^$', wiki_views.index),
     url(r'^wiki/', include('wiki.urls', namespace='wiki')),

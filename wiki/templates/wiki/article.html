@@ -78,9 +78,11 @@
         <textarea style="display:none;" name="content"> {{ article.content }}</textarea>
     </div>
 
-
+<br>
+    <HR>
+<br>
 <!-- 评论功能 -->
-
+<div class="container">
     <form action="{% url 'wiki:article_comment' %}" method="post">
 
         {% csrf_token %}
@@ -88,17 +90,21 @@
         <input type="hidden" name="pk" value="{{ article.pk | default:'0' }}" />
         <!-- <input type="hidden" name="comt_article" value="{{ article }}" /> -->
         <input type="hidden"  name="comt_author" value="{{ user }}"/>
-
-        <div class="form-group">
-            <label for="Textarea1">评论</label>
-            <textarea class="form-control" name="comt_content" rows="3"></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-outline-primary">提交</button>
+              <div class="row clearfix">
+            <div class="form-group col-md-11 column ">
+              <textarea class="form-control" rows="5" name="comt_content" value="和作者说点什么吧"
+        onfocus="if (value =='和作者说点什么吧'){value =''}"
+        onblur="if (value ==''){value='和作者说点什么吧'}" >和作者说点什么吧</textarea>
+            </div>
+              <div class="col-md-1 column ml-auto">
+               <button type="submit" class="btn ">Submit</button>
+                  </div>
+              </div>
     </form>
-
+ </div>
  <!-- 评论展示    -->
-<div class="list-group text-left">
+<div class="container">
+<div class="list-group   text-left">
     {% for comment in comments %}
     <ul>
         <li class="list-group-item">
@@ -111,8 +117,7 @@
     {% endfor %}
 
 </div>
-
-
+</div>
 {% endblock content %}
 
 

@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
-from wiki.models import Column, Article, IMG, Comment
+from wiki.models import Column, Article, IMG, Comment, Team
 # from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -19,13 +19,15 @@ def index(request):
     columns = Column.objects.all()
     articles = Article.objects.all().order_by('-pub_date')[:5]
     users = User.objects.all()
+    teams = Team.objects.all()
+    comments = Comment.objects.all()
     # user_key=User.objects.get(username=user_key)
     try:
         article = Article.objects.get(pk=10)
         context = {'columns': columns, 'articles': articles,
-                   'article': article, 'users': users}
-    except:
-        context = {'columns': columns, 'articles': articles, 'users': users}
+                   'article': article, 'users': users, 'teams': teams, 'comments': comments}
+    except BaseException:
+        context = {'columns': columns, 'articles': articles, 'users': users, 'teams': teams, 'comments': comments}
     return render(request, 'index.html', context)
 
 # 介绍页面
@@ -61,7 +63,7 @@ def register(request):
             try:
                 User.objects.get(username=username)
                 return HttpResponse(u"Username already exists")
-            except:
+            except BaseException:
                 User.objects.create_user(username, email, password1)
                 return HttpResponseRedirect(reverse('wiki:index'))
 
