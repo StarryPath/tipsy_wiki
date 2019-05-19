@@ -20,13 +20,13 @@
 			  </ul>
 			  <div class="carousel-inner">
 				<div class="carousel-item active">
-				  <img src="https://static.runoob.com/images/mix/img_fjords_wide.jpg">
+				  <img  src="/static/one.jpg">
 				</div>
 				<div class="carousel-item">
-				  <img src="https://static.runoob.com/images/mix/img_nature_wide.jpg">
+				  <img src="/static/two.jpg">
 				</div>
 				<div class="carousel-item">
-				  <img src="https://static.runoob.com/images/mix/img_mountains_wide.jpg">
+				  <img src="/static/three.jpg">
 				</div>
 			  </div>
 			  <a class="carousel-control-prev" href="#demo" data-slide="prev">
@@ -46,17 +46,12 @@
 		<div class="row clearfix">
 		<div class="col-md-9 column">
 			<div class="jumbotron">
-				<h1>
-					{% for comment in comments %}
-					{{ comment.author.username }}发表在<a href="{{ comment.article.get_absolute_url }}">{{ comment.article.title }}</a>
-					{% endfor %}
-				</h1>
+				<h2>
+					企业简介
+				</h2>
+				<br>
 				<p>
-					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-				</p>
-				<p>
-					 <a class="btn btn-primary btn-large" href="#">Learn more</a>
-				</p>
+					Tipsy Company致力于通过提供高品质的安全服务，为互联网用户解决上网时遇到的各种安全问题。面对互联网时代木马、病毒、流氓软件、钓鱼欺诈网页等多元化的安全威胁，Tipsy以互联网的思路解决网络安全问题。Tipsy是安全的引领者，认为互联网安全像搜索、电子邮箱一样，是互联网的基础服务，为广大网民提供高质量的安全服务，共创美好和谐的网络安全环境。</p>
 			</div>
 			<div class="row clearfix">
 				{% for team in teams %}
