@@ -105,7 +105,7 @@ def user_page(request, user_key):
     list.append(str(user_key.team))
     for person in group:
         list.append(str(person))
-    num = len(group)
+    num = len(list)
     context = {'columns': columns, 'user_key': user_key,
                'group': json.dumps(list), 'num': num}
 
