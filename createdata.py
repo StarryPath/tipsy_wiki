@@ -16,7 +16,7 @@ User.objects.create_superuser(
 # 添加其他用户
 namelist1 = ['lintianxiang', 'liujiahaos', 'liyanzhe', 'zhangdachuan',
 
-             'fuyao', 'jinzhen', 'zhangruiqi']
+             'fuyao', 'jinzhen', 'zhangruiqi', 'liuyumeng']
 
 team = Team.objects.get(pk=1)
 for name in namelist1:
