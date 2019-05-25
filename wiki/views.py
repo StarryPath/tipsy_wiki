@@ -24,14 +24,15 @@ def index(request):
     comments = Comment.objects.all().order_by('-pub_date')[:3]
     users = User.objects.all()
     teams = Team.objects.all()
-    
+
     # user_key=User.objects.get(username=user_key)
     try:
         article = Article.objects.get(pk=10)
         context = {'columns': columns, 'articles': articles,
                    'article': article, 'users': users, 'teams': teams, 'comments': comments}
     except BaseException:
-        context = {'columns': columns, 'articles': articles, 'users': users, 'teams': teams, 'comments': comments}
+        context = {'columns': columns, 'articles': articles,
+                   'users': users, 'teams': teams, 'comments': comments}
     return render(request, 'index.html', context)
 
 # 介绍页面
@@ -142,6 +143,16 @@ def article_detail(request, column_slug, pk):
     context = {'article': article, 'columns': columns,
                'column': column, 'comments': comments}
     return render(request, 'wiki/article.html', context)
+
+
+# 搜索
+
+
+def search(request):
+    title = request.POST.get('title')
+    articles = Article.objects.filter(title__contains=title)
+    context = {'articles': articles}
+    return render(request, 'wiki/search.html', context)
 
 # 评论
 

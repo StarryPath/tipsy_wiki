@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ column.name }}
+{% endblock title %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <ul class="list-group">
+        <li class="list-group-item active">搜索结果</li>
+        <li class="list-group-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        标题
+                    </div>
+                    <div class="col">
+                        作者
+                    </div>
+                    <div class="col">
+                        创建时间
+                    </div>
+                    <div class="col">
+                        更新时间
+                    </div>
+                </div>
+            </div>
+
+        </li>
+
+        {% for article in articles %}
+        <li class="list-group-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                    </div>
+                    <div class="col">
+                        <a href="{% url 'wiki:user_page' article.author %}">{{ article.author }}</a>
+                    </div>
+                    <div class="col">
+                        {{ article.pub_date }}
+                    </div>
+                    <div class="col">
+                        {{ article.update_time }}
+                    </div>
+                </div>
+            </div>
+
+        </li>
+    </ul>
+</div>
+{% endfor %}
+{% endblock content %}

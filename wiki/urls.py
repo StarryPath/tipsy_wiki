@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^column/(?P<column_slug>[^/]+)/$', wiki_views.column_detail, name='column'),
     url(r'^article/(?P<column_slug>[^/]+)/(?P<pk>\d+)/$', wiki_views.article_detail, name='article'),
     url(r'^comment/action/$', wiki_views.article_comment, name='article_comment'),
+    url(r'^search/$', wiki_views.search, name='search'),
     url(r'^edit/(?P<pk>\d+)/$', wiki_views.edit_page, name='edit_page'),
     url(r'^edit/action/$', wiki_views.edit_action, name='edit_action'),
 ]
