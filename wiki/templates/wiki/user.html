@@ -15,44 +15,48 @@
 <div class="row">
     <div class="col-2">
         <div class="list-group" id="list-tab" role="tablist">
-            <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">会员信息</a>
-            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">所写文章</a>
-            <a class="list-group-item list-group-item-action" id="list-group-list" data-toggle="list" href="#list-group" role="tab" aria-controls="group">团队信息</a>
+            <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list"
+                href="#list-profile" role="tab" aria-controls="profile">会员信息</a>
+            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
+                href="#list-messages" role="tab" aria-controls="messages">所写文章</a>
+            <a class="list-group-item list-group-item-action" id="list-group-list" data-toggle="list" href="#list-group"
+                role="tab" aria-controls="group">团队信息</a>
         </div>
     </div>
 
 
     <div class="col-8">
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+            <div class="tab-pane fade show active" id="list-profile" role="tabpanel"
+                aria-labelledby="list-profile-list">
                 <table class="table table-dark">
                     <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">content</th>
-                    </tr>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">content</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">姓名</th>
-                        <td>{{user_key.username}}</td>
+                        <tr>
+                            <th scope="row">姓名</th>
+                            <td>{{user_key.username}}</td>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">邮箱</th>
-                        <td>{{user_key.email}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">邮箱</th>
+                            <td>{{user_key.email}}</td>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">团队</th>
-                        <td>{{user_key.team}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">团队</th>
+                            <td>{{user_key.team}}</td>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">最后登陆</th>
-                        <td>{{user_key.last_login}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">最后登陆</th>
+                            <td>{{user_key.last_login}}</td>
 
-                    </tr>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -82,22 +86,22 @@
             </div>
             <div class="tab-pane fade" id="list-group" role="tabpanel" aria-labelledby="list-messages-list">
 
-            <div id="container" style="width: 600px;height:600px;"></div>
+                <div id="container" style="width: 600px;height:600px;"></div>
             </div>
 
-            </div>
-            <script type="text/javascript">
+        </div>
+        <script type="text/javascript">
             var dom = document.getElementById("container");
             var myChart = echarts.init(dom);
             var app = {};
             option = null;
-            var myArray = {{ group|safe }};
+            var myArray = {{ group| safe }};
             function createNodes(count) {
                 var nodes = [];
                 for (var i = 0; i < count; i++) {
                     nodes.push({
                         id: i,
-                        name:myArray[i],
+                        name: myArray[i],
                     });
                 }
                 return nodes;
@@ -116,9 +120,9 @@
 
             var datas = [];
 
-                datas.push({
-                    nodes: createNodes({{num}}),
-                    edges: createEdges({{num}})
+            datas.push({
+                nodes: createNodes({{ num }}),
+                edges: createEdges({{ num }})
                 });
 
 
@@ -128,18 +132,18 @@
                         type: 'graph',
                         layout: 'force',
                         label: {
-                normal: {
-                    show: true
-                }
-            },
-            itemStyle: {
-        normal: {
-            color: "#8B7355",
-            lineStyle: {
-                color: "#8B7355"
-            }
-        }
-    },
+                            normal: {
+                                show: true
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: "#8B7355",
+                                lineStyle: {
+                                    color: "#8B7355"
+                                }
+                            }
+                        },
                         symbolSize: 50,
                         data: item.nodes,
                         left: (idx % 4) * 25 + '%',
@@ -147,8 +151,8 @@
                         width: '100%',
                         height: '100%',
                         force: {
-                             initLayout: 'circular',
-                             gravity: 0,
+                            initLayout: 'circular',
+                            gravity: 0,
                             repulsion: 400,
                             edgeLength: 200
                         },
@@ -165,9 +169,9 @@
             if (option && typeof option === "object") {
                 myChart.setOption(option, true);
             }
-       </script>
-        </div>
+        </script>
     </div>
+</div>
 </div>
 
 
@@ -177,4 +181,3 @@
 
 
 {% endblock content %}
-

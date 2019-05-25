@@ -150,7 +150,7 @@ def article_detail(request, column_slug, pk):
 
 def search(request):
     title = request.POST.get('title')
-    articles = Article.objects.filter(title__contains=title)
+    articles = Article.objects.filter(title__icontains=title)
     context = {'articles': articles}
     return render(request, 'wiki/search.html', context)
 

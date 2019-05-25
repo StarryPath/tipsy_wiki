@@ -8,4 +8,4 @@ urlpatterns = [
     url(r'^wiki/', include('wiki.urls', namespace='wiki')),
     # url('^', include('auth.urls', namespace='users')),
     url(r'^admin/', admin.site.urls),
-]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
