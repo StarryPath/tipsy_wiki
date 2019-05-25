@@ -151,7 +151,8 @@ def article_detail(request, column_slug, pk):
 def search(request):
     title = request.POST.get('title')
     articles = Article.objects.filter(title__icontains=title)
-    context = {'articles': articles}
+    columns = Column.objects.all()
+    context = {'articles': articles, 'columns':columns}
     return render(request, 'wiki/search.html', context)
 
 # 评论
