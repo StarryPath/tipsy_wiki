@@ -21,19 +21,19 @@ update an article
 <script src="/static/editormd/editormd.min.js"></script>
 <script type="text/javascript">
     var editor;
-    $(function() {
+    $(function () {
         editor = editormd("editormd", {
-            path : "/static/editormd/lib/",
-            width   : "90%",
-            height  : 640,
-            syncScrolling : "single",
-            tocm    : true,
-            tex             : true,  // 默认不解析
-            flowChart       : true,  // 默认不解析
-            sequenceDiagram : true,  // 默认不解析
-            imageUpload : true,
-            imageFormats : ["jpg","jpeg","gif","png","bmp","webp"],
-            imageUploadURL : "{% url 'wiki:upload' %}",
+            path: "/static/editormd/lib/",
+            width: "90%",
+            height: 640,
+            syncScrolling: "single",
+            tocm: true,
+            tex: true,  // 默认不解析
+            flowChart: true,  // 默认不解析
+            sequenceDiagram: true,  // 默认不解析
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "{% url 'wiki:upload' %}",
 
         });
     });
@@ -49,7 +49,7 @@ update an article
     {% csrf_token %}
 
     <input type="hidden" name="pk" value="{{ article.pk | default:'0' }}" />
-    <input type="hidden"  name="author" value="{{ user }}"/>
+    <input type="hidden" name="author" value="{{ user }}" />
     <div class="form-group">
 
 
@@ -69,7 +69,8 @@ update an article
                 </div>
                 <div class="col">
                     <label for="title"></label>
-                    <input id="title" type="text" class="form-control" placeholder="Title" name="title" value="{{ article.title }}"/>
+                    <input id="title" type="text" class="form-control" placeholder="Title" name="title"
+                        value="{{ article.title }}" />
                 </div>
 
 
@@ -79,21 +80,9 @@ update an article
         </div>
     </div>
 
-    <div id="editormd" >
+    <div id="editormd">
         <textarea style="display:none;" name="content">{{ article.content }}</textarea>
     </div>
     <button type="submit" class="btn btn-outline-primary">提交</button>
 </form>
 {% endblock content %}
-
-
-
-
-
-
-
-
-
-
-
-

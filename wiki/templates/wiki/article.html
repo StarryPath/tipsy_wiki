@@ -1,81 +1,123 @@
 {% extends "base.html" %}
 
 {% block title %}
-    {{ article.title }}
+{{ article.title }}
 {% endblock title %}
 
 {% block css %}
-    <link rel="stylesheet" href="/static/editormd/examples/css/style.css"/>
-    <link rel="stylesheet" href="/static/editormd/css/editormd.preview.css"/>
-    <style>
-        .editormd-html-preview {
-            width: 90%;
-            margin: 0 auto;
+<link rel="stylesheet" href="/static/editormd/examples/css/style.css" />
+<link rel="stylesheet" href="/static/editormd/css/editormd.preview.css" />
+<style>
+    .editormd-html-preview {
+        width: 90%;
+        margin: 0 auto;
 
-        }
-    </style>
+    }
+</style>
 {% endblock css %}
 
 {% block js %}
-    <script src="/static/editormd/examples/js/jquery.min.js"></script>
-    <script src="/static/editormd/lib/marked.min.js"></script>
-    <script src="/static/editormd/lib/prettify.min.js"></script>
-    <script src="/static/editormd/lib/raphael.min.js"></script>
-    <script src="/static/editormd/lib/underscore.min.js"></script>
-    <script src="/static/editormd/lib/sequence-diagram.min.js"></script>
-    <script src="/static/editormd/lib/flowchart.min.js"></script>
-    <script src="/static/editormd/lib/jquery.flowchart.min.js"></script>
-    <script src="/static/editormd/editormd.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            var EditormdView;
+<script src="/static/editormd/examples/js/jquery.min.js"></script>
+<script src="/static/editormd/lib/marked.min.js"></script>
+<script src="/static/editormd/lib/prettify.min.js"></script>
+<script src="/static/editormd/lib/raphael.min.js"></script>
+<script src="/static/editormd/lib/underscore.min.js"></script>
+<script src="/static/editormd/lib/sequence-diagram.min.js"></script>
+<script src="/static/editormd/lib/flowchart.min.js"></script>
+<script src="/static/editormd/lib/jquery.flowchart.min.js"></script>
+<script src="/static/editormd/editormd.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var EditormdView;
 
-            EditormdView = editormd.markdownToHTML("editormd_view", {
+        EditormdView = editormd.markdownToHTML("editormd_view", {
 
 
-                htmlDecode: "style,script,iframe",  // you can filter tags decode
-                tocm: true,
-                emoji: true,
-                taskList: true,
-                tex: true,  // 默认不解析
-                flowChart: true,  // 默认不解析
-                sequenceDiagram: true,  // 默认不解析
+            htmlDecode: "style,script,iframe",  // you can filter tags decode
+            tocm: true,
+            emoji: true,
+            taskList: true,
+            tex: true,  // 默认不解析
+            flowChart: true,  // 默认不解析
+            sequenceDiagram: true,  // 默认不解析
 
-            });
         });
-    </script>
+    });
+</script>
 {% endblock js %}
 
 {% block content %}
 
-    <ul class="list-group">
-        <li class="list-group-item active"><h5 class="mt-0">{{ article.title }}</h5></li>
-        <li class="list-group-item">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <a href="{% url 'wiki:edit_page' article.pk %}">修改</a>
-                    </div>
-                    <div class="col">
-                        栏目@<a href="{% url 'wiki:column' column.slug %}">{{ article.column }}</a>
-                    </div>
-                    <div class="col">
-                        作者@<a href="{% url 'wiki:user_page' article.author %}">{{ article.author }}</a>
-                    </div>
-                    <div class="col">
-                        创建@{{ article.pub_date }}
-                    </div>
-                    <div class="col">
-                        更新@{{ article.update_time }}
-                    </div>
+<ul class="list-group">
+    <li class="list-group-item active">
+        <h5 class="mt-0">{{ article.title }}</h5>
+    </li>
+    <li class="list-group-item">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <a href="{% url 'wiki:edit_page' article.pk %}">修改</a>
+                </div>
+                <div class="col">
+                    栏目@<a href="{% url 'wiki:column' column.slug %}">{{ article.column }}</a>
+                </div>
+                <div class="col">
+                    作者@<a href="{% url 'wiki:user_page' article.author %}">{{ article.author }}</a>
+                </div>
+                <div class="col">
+                    创建@{{ article.pub_date }}
+                </div>
+                <div class="col">
+                    更新@{{ article.update_time }}
                 </div>
             </div>
-        </li>
-    </ul>
+        </div>
+    </li>
+</ul>
 
 
-    <div id="editormd_view">
-        <textarea style="display:none;" name="content"> {{ article.content }}</textarea>
+<div id="editormd_view">
+    <textarea style="display:none;" name="content"> {{ article.content }}</textarea>
+</div>
+
+<br>
+<HR>
+<br>
+<!-- 评论功能 -->
+<div class="container">
+    <form action="{% url 'wiki:article_comment' %}" method="post">
+
+        {% csrf_token %}
+
+        <input type="hidden" name="pk" value="{{ article.pk | default:'0' }}" />
+        <!-- <input type="hidden" name="comt_article" value="{{ article }}" /> -->
+        <input type="hidden" name="comt_author" value="{{ user }}" />
+        <div class="row clearfix">
+            <div class="form-group col-md-11 column ">
+                <textarea class="form-control" rows="5" name="comt_content" value="和作者说点什么吧"
+                    onfocus="if (value =='和作者说点什么吧'){value =''}"
+                    onblur="if (value ==''){value='和作者说点什么吧'}">和作者说点什么吧</textarea>
+            </div>
+            <div class="col-md-1 column ml-auto">
+                <button type="submit" class="btn ">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 评论展示    -->
+<div class="container">
+    <div class="list-group   text-left">
+        {% for comment in comments %}
+        <ul>
+            <li class="list-group-item">
+                <span class="text-primary">{{ comment.author }}&nbsp;:</span>
+                <span>&nbsp;&nbsp;{{ comment.content }}</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="text-info pull-right">({{ comment.pub_date }})</span>
+            </li>
+        </ul>
+        {% endfor %}
+
     </div>
-
+</div>
 {% endblock content %}

@@ -23,8 +23,7 @@ SECRET_KEY = '$9tbzp)l(1%^$(p7i#13^$@27%!vuu^_r0b1y)#-6mht94!3fh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', ]
 
 # Application definition
 
@@ -79,7 +78,7 @@ DATABASES = {
         'NAME': 'djangodb',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST':'localhost',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
@@ -105,15 +104,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'zh-Hans'
+LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -125,3 +124,6 @@ ALLOWED_HOSTS = ['*']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 ALLOWED_HOSTS = ['*']
+
+
+AUTH_USER_MODEL = "wiki.NewUser"

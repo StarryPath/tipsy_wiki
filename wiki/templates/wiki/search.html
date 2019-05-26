@@ -5,9 +5,10 @@
 {% endblock title %}
 
 {% block content %}
+
 <div class="container-fluid">
     <ul class="list-group">
-        <li class="list-group-item active">{{ column.name }}</li>
+        <li class="list-group-item active">搜索结果</li>
         <li class="list-group-item">
             <div class="container">
                 <div class="row">
@@ -28,7 +29,7 @@
 
         </li>
 
-        {% for article in contacts %}
+        {% for article in articles %}
         <li class="list-group-item">
             <div class="container">
                 <div class="row">
@@ -50,28 +51,6 @@
         </li>
         {% endfor %}
     </ul>
-    <nav aria-label="...">
-        <ul class="pagination">
-            {% for page_number in contacts.paginator.page_range %}
-            {% ifequal page_number contacts.number %}
-            <li class="page-item active">
-                <span class="page-link">
-                    {{ page_number }}
-                    <span class="sr-only"></span>
-                </span>
-            </li>
-            {% else %}
-            <li class="page-item"><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-            </li>
-
-            {% endifequal %}
-            {% endfor %}
-        </ul>
-    </nav>
 </div>
-
-
-
-
 
 {% endblock content %}

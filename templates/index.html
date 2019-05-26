@@ -4,154 +4,118 @@
 
 {% block content %}
 
-    <div class="container">
+<div class="container-fluid">
 	<div class="row clearfix">
-		<div id="demo" class="carousel slide" data-ride="carousel">
+		<div class="col-md-1 column"></div>
+		<div class="col-md-11 column">
+			<div class="row clearfix">
+				<div class="col-md-9 column">
 
-  <!-- 指示符 -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
-
-  <!-- 轮播图片 -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="https://static.runoob.com/images/mix/img_fjords_wide.jpg">
-    </div>
-    <div class="carousel-item">
-      <img src="https://static.runoob.com/images/mix/img_nature_wide.jpg">
-    </div>
-    <div class="carousel-item">
-      <img src="https://static.runoob.com/images/mix/img_mountains_wide.jpg">
-    </div>
-  </div>
-
-  <!-- 左右切换按钮 -->
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
-
-</div>
-		<div class="col-md-12 column">
-			<nav class="navbar navbar-default" role="navigation">
-
-
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="active">
-							 <a href="#">Link</a>
-						</li>
-						<li>
-							 <a href="#">Link</a>
-						</li>
-						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									 <a href="#">Action</a>
-								</li>
-								<li>
-									 <a href="#">Another action</a>
-								</li>
-								<li>
-									 <a href="#">Something else here</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									 <a href="#">Separated link</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									 <a href="#">One more separated link</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" />
-						</div> <button type="submit" class="btn btn-default">Submit</button>
-					</form>
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							 <a href="#">Link</a>
-						</li>
-						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									 <a href="#">Action</a>
-								</li>
-								<li>
-									 <a href="#">Another action</a>
-								</li>
-								<li>
-									 <a href="#">Something else here</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									 <a href="#">Separated link</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
+					<!-- 轮播图片 -->
+					<div id="demo" class="carousel slide" data-ride="carousel">
+						<ul class="carousel-indicators">
+							<li data-target="#demo" data-slide-to="0" class="active"></li>
+							<li data-target="#demo" data-slide-to="1"></li>
+							<li data-target="#demo" data-slide-to="2"></li>
+						</ul>
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img src="/static/one.jpg">
+							</div>
+							<div class="carousel-item">
+								<img src="/static/two.jpg">
+							</div>
+							<div class="carousel-item">
+								<img src="/static/three.jpg">
+							</div>
+						</div>
+						<a class="carousel-control-prev" href="#demo" data-slide="prev">
+							<span class="carousel-control-prev-icon"></span>
+						</a>
+						<a class="carousel-control-next" href="#demo" data-slide="next">
+							<span class="carousel-control-next-icon"></span>
+						</a>
+					</div>
 				</div>
-
-			</nav>
-			<div class="jumbotron">
-				<h1>
-					Hello, world!
-				</h1>
-				<p>
-					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-				</p>
-				<p>
-					 <a class="btn btn-primary btn-large" href="#">Learn more</a>
-				</p>
+				<!--天气预报-->
+				<div class="col-md-3 column ">
+					<iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=55&py=weihai"
+						style="border:solid 1px #7ec8ea" width="100%" height="294" frameborder="0" marginwidth="0"
+						marginheight="0" scrolling="no"
+						sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div class="row clearfix">
-		<div class="col-md-4 column">
-			<h2>
-				Heading
-			</h2>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			<p>
-				 <a class="btn" href="#">View details »</a>
-			</p>
-		</div>
-		<div class="col-md-4 column">
-			<h2>
-				Heading
-			</h2>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			<p>
-				 <a class="btn" href="#">View details »</a>
-			</p>
-		</div>
-		<div class="col-md-4 column">
-			<h2>
-				Heading
-			</h2>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			<p>
-				 <a class="btn" href="#">View details »</a>
-			</p>
+			<br>
+			<div class="row clearfix">
+				<div class="col-md-9 column">
+					<div class="jumbotron">
+						<h2>
+							企业简介
+						</h2>
+						<br>
+						<p>
+							Tipsy
+							Company致力于通过提供高品质的安全服务，为互联网用户解决上网时遇到的各种安全问题。面对互联网时代木马、病毒、流氓软件、钓鱼欺诈网页等多元化的安全威胁，Tipsy以互联网的思路解决网络安全问题。Tipsy是安全的引领者，认为互联网安全像搜索、电子邮箱一样，是互联网的基础服务，为广大网民提供高质量的安全服务，共创美好和谐的网络安全环境。
+						</p>
+					</div>
+					<div class="row clearfix">
+						{% for team in teams %}
+						<div class="col-md-4 column">
+							<h2>
+								{{ team.name }}
+							</h2>
+							<HR>
+							<p>
+								{{ team.intro }}
+							</p>
+						</div>
+						{% endfor %}
+
+					</div>
+				</div>
+				<div class="col-md-3 column ">
+					<div class="list-group   text-left">
+						<ul>
+							<li class="list-group-item">
+								<h5><strong>最新文章</strong></h5>
+							</li>
+							{% for article in articles %}
+
+
+							<li class="list-group-item">
+								<span class="text-primary">{{ article.author}}&nbsp;</span>
+								<span>&nbsp;&nbsp;创建了&nbsp;&nbsp;&nbsp;&nbsp;<a
+										href="{{ article.get_absolute_url }}">{{article.title}}</a></span>
+
+							</li>
+
+							{% endfor %}
+						</ul>
+					</div>
+					<br><br><br><br><br><br><br><br>
+					<div class="list-group   text-left">
+						<ul>
+							<li class="list-group-item">
+								<h5><strong>近期评论</strong></h5>
+							</li>
+							{% for comment in comments %}
+
+
+							<li class="list-group-item">
+								<span class="text-primary">{{ comment.author.username }}&nbsp;</span>
+								<span>&nbsp;&nbsp;发表在&nbsp;&nbsp;&nbsp;&nbsp;<a
+										href="{{ comment.article.get_absolute_url }}">{{ comment.article.title }}</a></span>
+
+							</li>
+
+							{% endfor %}
+						</ul>
+					</div>
+
+
+
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
